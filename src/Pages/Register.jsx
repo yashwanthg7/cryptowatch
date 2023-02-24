@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import './auth.css'
 const Register = () => {
@@ -9,9 +9,11 @@ const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
+        localStorage.setItem('credentials', JSON.stringify(credentials));
+        history.push('/login');
 
         // set the user data to the localStorage
-        
+
     }
     const handleChange = (e) => {
         e.preventDefault();
