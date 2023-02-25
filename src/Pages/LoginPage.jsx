@@ -1,9 +1,10 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState} from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import './auth.css'
 const LoginPage = () => {
 
   const [credentials, setCredentials] = useState({ email: '', password: ''})
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const history = useHistory();
 
@@ -12,8 +13,10 @@ const LoginPage = () => {
     const storedCredentials = JSON.parse(localStorage.getItem('credentials'));
     if (storedCredentials.email === credentials.email && storedCredentials.password === credentials.password) {
       history.push('/home');
+      setLoggedIn(true);
     } else {
       alert('Credentials are not valid');
+
     }
     
     // get the user data from the localStorage if matches take the user to Home page

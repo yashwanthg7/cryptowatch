@@ -1,5 +1,5 @@
 import { Button, CircularProgress, createTheme, styled, ThemeProvider } from '@mui/material';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import React, { useEffect, useState } from 'react'
 import { HistoricalChart } from '../config/api';
 import { CryptoState } from '../CryptoContext';
@@ -37,13 +37,14 @@ const CoinChart = ({ id }) => {
     const fetchChartData = async () => {
 
         //fetch chart data here
-
+        const {data} = await axios.get(HistoricalChart(id,period,currency))
+        setHistoricalData(data.prices);
         setFlag(true);
     }
 
     useEffect(() => {
 
-
+       fetchChartData();
     }, [currency, period])
 
 
